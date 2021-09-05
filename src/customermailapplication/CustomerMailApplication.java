@@ -17,20 +17,8 @@ public class CustomerMailApplication {
     /**
      * @param args the command line arguments
      */
-    private Customer customer;
-    public void getCustomerTypeFromUser(String customerType) {
-        switch(customerType) {
-            case "Regular":
-                customer = new RegularCustomer();
-                break;
-            case "Mountain":
-                customer = new MountainCustomer();
-                break;
-            case "Delinquent":
-                customer = new DelinquentCustomer();
-                break;
-        }
-    }
+    private static Customer customer;
+    
     public String generateMail() {
         return customer.createMail();
     }
@@ -42,13 +30,13 @@ public class CustomerMailApplication {
         int type = inp.nextInt();
         switch(type) {
             case 1:
-                app.getCustomerTypeFromUser("Regular");
+                customer = CustomerFactory.createCustmer("Regular");
                 break;
             case 2:
-                app.getCustomerTypeFromUser("Mountain");
+                customer = CustomerFactory.createCustmer("Mountain");
                 break;
             case 3:
-                app.getCustomerTypeFromUser("Delinquent");
+                customer = CustomerFactory.createCustmer("Delinquent");
                 break;
             
         }
